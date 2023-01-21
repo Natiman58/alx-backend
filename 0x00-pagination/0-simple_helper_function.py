@@ -4,7 +4,7 @@
     'page' and 'page_size'
     returns a tuple of size 2
     containing a start and end index
-    
+
 """
 
 
