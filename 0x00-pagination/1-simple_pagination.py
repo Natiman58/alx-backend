@@ -21,9 +21,7 @@ class Server:
         if self.__dataset is None:
             with open(self.DATA_FILE) as f:
                 reader = csv.reader(f)
-                print(reader)
                 dataset = [row for row in reader]
-                print(dataset)
             self.__dataset = dataset[1:]
 
         return self.__dataset
