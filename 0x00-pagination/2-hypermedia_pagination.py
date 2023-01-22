@@ -2,7 +2,7 @@
 
 import csv
 import math
-from typing import List
+from typing import Dict, List
 
 index_range = __import__('0-simple_helper_function').index_range
 
@@ -44,7 +44,7 @@ class Server:
         except IndexError:
             return []
 
-    def get_hyper(self, page: int = 1, page_size: int = 10) -> dict:
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
         """
             page_size: the length of the returned data set page
             page: the current page number
