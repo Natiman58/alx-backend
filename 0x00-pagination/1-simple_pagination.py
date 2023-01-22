@@ -1,26 +1,9 @@
 #!/usr/bin/env python3
 
 import csv
-import math
 from typing import List
 
-# index_range = __import__('0-simple_helper_function').index_range
-
-
-def index_range(page: int, page_size: int) -> tuple:
-    """
-        page: the page to be indexed
-        page_size: the number of indexes a page should have
-        returns a tuple of index ranges
-    """
-    start_index = 0
-    end_index = 0
-
-    for i in range(page):
-        start_index = end_index
-        end_index = end_index + page_size
-
-    return (start_index, end_index)
+index_range = __import__('0-simple_helper_function').index_range
 
 
 class Server:
