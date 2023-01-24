@@ -24,7 +24,7 @@ class BasicCache(BaseCaching):
         if key or item is None:
             pass
         self.cache_data[key] = item
-    
+
     def get(self, key):
         """
             returns the value associated with the assigned key
