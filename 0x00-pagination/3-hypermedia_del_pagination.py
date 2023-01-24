@@ -41,7 +41,7 @@ class Server:
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
         """
-            return a dictionary with the ff k-v pairs
+            returns a dictionary with the ff k-v pairs
             index: index of the first item in the current page
             next_index: next index to query
             page_size: the current page size
