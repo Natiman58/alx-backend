@@ -22,20 +22,21 @@ class FIFOCache(BaseCaching):
     def put(self, key, item):
         """
             puts the item in the cached data after assigning
-            it with key
+            it with key and implement FIFO caching system
         """
         if key is None or item is None:
             pass
 
-        item_num = len(self.cache_data)
+        cache = self.cache_data
+        item_num = len(cache)
         max_items = BaseCaching.MAX_ITEMS
-        if item_num >= max_items and key not in self.cache_data:
+        if item_num >= max_items and key not in cache:
             print(f"DISCARD: {self.keys_array[0]}", end='\n')
-            del self.cache_data[self.keys_array[0]]  # delete the first item
+            del cache[self.keys_array[0]]  # delete the first item
             del self.keys_array[0]  # then delete the first key
 
         self.keys_array.append(key)  # add the new key to the new array
-        self.cache_data[key] = item  # add new item with key to the cache data
+        cache[key] = item  # add new item with key to the cache data
 
     def get(self, key):
         """
