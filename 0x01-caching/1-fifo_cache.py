@@ -2,8 +2,6 @@
 """
     A module to implement FIFO caching system
 """
-from os import remove
-
 
 BaseCaching = __import__('base_caching').BaseCaching
 
