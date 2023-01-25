@@ -40,6 +40,9 @@ class FIFOCache(BaseCaching):
         """
             returns the item in the cached data dict
             that is assigned to the key
+            if key is not none and found in cache
+            return the item in that cache
+            else None
         """
         if key is not None and key in self.cache_data.keys():
             return self.cache_data[key]
