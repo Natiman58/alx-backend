@@ -43,4 +43,4 @@ class LIFOCache(BaseCaching):
         """
         if key is not None and key in self.cache_data.keys():
             return self.cache_data[key]
-        return  None
+        return None
