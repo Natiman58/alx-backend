@@ -32,6 +32,8 @@ class LIFOCache(BaseCaching):
                 print(f"DISCARD: {self.keys_array[-1]}")
                 del cache[self.keys_array[-1]]
                 del self.keys_array[-1]
+            if key in self.keys_array:
+                del self.keys_array[self.keys_array.index(key)]
             self.keys_array.append(key)
             cache[key] = item
 
