@@ -21,7 +21,7 @@ class BasicCache(BaseCaching):
             and add the item to the cached data dict
             if no key or item; dont print anythiing
         """
-        if key or item is None:
+        if key is None or item is None:
             pass
         self.cache_data[key] = item
 
