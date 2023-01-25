@@ -2,8 +2,7 @@
 """
     A base class module
 """
-# BaseCaching = __import__('base_caching').BaseCaching
-from base_caching import BaseCaching
+BaseCaching = __import__('base_caching').BaseCaching
 
 
 class BasicCache(BaseCaching):
@@ -14,7 +13,7 @@ class BasicCache(BaseCaching):
         """
             initialize this class using the parent class
         """
-        BaseCaching.__init__()
+        super().__init__()
 
     def put(self, key, item):
         """
@@ -24,8 +23,8 @@ class BasicCache(BaseCaching):
         """
         if key is None or item is None:
             pass
-        else:
-            self.cache_data[key] = item
+
+        self.cache_data[key] = item
 
     def get(self, key):
         """
@@ -33,6 +32,6 @@ class BasicCache(BaseCaching):
             from the cached data dict
             if there is no key or key is not in the dict return None
         """
-        if key is None and key not in self.cache_data.keys():
+        if key is None or key not in self.cache_data.keys():
             return None
         return self.cache_data[key]
