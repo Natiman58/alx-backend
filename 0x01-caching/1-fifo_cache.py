@@ -24,17 +24,17 @@ class FIFOCache(BaseCaching):
         """
         if key is None or item is None:
             pass
+        else:
+            cache = self.cache_data
+            item_num = len(cache)
+            max_items = BaseCaching.MAX_ITEMS
+            if item_num >= max_items and key not in cache:
+                print(f"DISCARD: {self.keys_array[0]}", end='\n')
+                del cache[self.keys_array[0]]  # delete the first item
+                del self.keys_array[0]  # then delete the first key
 
-        cache = self.cache_data
-        item_num = len(cache)
-        max_items = BaseCaching.MAX_ITEMS
-        if item_num >= max_items and key not in cache:
-            print(f"DISCARD: {self.keys_array[0]}", end='\n')
-            del cache[self.keys_array[0]]  # delete the first item
-            del self.keys_array[0]  # then delete the first key
-
-        self.keys_array.append(key)  # add the new key to the new array
-        cache[key] = item  # add new item with key to the cache data
+            self.keys_array.append(key)  # add the new key to the new array
+            cache[key] = item  # add new item with key to the cache data
 
     def get(self, key):
         """
