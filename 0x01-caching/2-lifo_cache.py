@@ -10,7 +10,7 @@ class LIFOCache(BaseCaching):
     """
         A class for LIFO cache
     """
-    def __init__(self) -> None:
+    def __init__(self):
         """
             initialize using the parent class
         """
