@@ -29,13 +29,17 @@ class LIFOCache(BaseCaching):
             item_num = len(cache)
             max_items = BaseCaching.MAX_ITEMS
             if item_num >= max_items and key not in cache:
-                print(f"DISCARD: {self.keys_array[-1]}", end='\n')
-                del cache[self.keys_array[-1]]
-                del self.keys_array[-1]
-            if key in self.keys_array:
-                del self.keys_array[self.keys_array.index(key)]
-            self.keys_array.append(key)
-            cache[key] = item
+                last_key = self.keys_array[-1]
+                print(f"DISCARD: {last_key}", end='\n')
+                del cache[last_key]  # delete the item
+                del last_key  # then delete the key
+
+            if key in self.keys_array:  # if key in keys array
+                key_index = self.keys_array.index(key)
+                del self.keys_array[key_index]  # delete the key
+            else:  # if key is not in keys array
+                self.keys_array.append(key)  # append
+                cache[key] = item  # then add the item into cache
 
     def get(self, key):
         """
