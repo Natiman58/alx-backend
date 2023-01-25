@@ -33,6 +33,6 @@ class BasicCache(BaseCaching):
             if there is a key and key is in the dict return the item at the key
             else None
         """
-        if key is not None or key in self.cache_data.keys():
+        if key is not None and key in self.cache_data.keys():
             return self.cache_data[key]
         return None
