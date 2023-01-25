@@ -30,7 +30,8 @@ class BasicCache(BaseCaching):
         """
             returns the value associated with the assigned key
             from the cached data dict
-            if there is no key or key is not in the dict return None
+            if there is a key and key is in the dict return the item at the key
+            else None
         """
         if key is not None and key in self.cache_data.keys():
             return self.cache_data[key]
