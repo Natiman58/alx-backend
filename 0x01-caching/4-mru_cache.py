@@ -40,6 +40,5 @@ class MRUCache(BaseCaching):
         if key is not None and key in self.cache_data.keys():
             del self.keys_array[self.keys_array.index(key)]
             self.keys_array.append(key)
-            print(self.keys_array)
             return self.cache_data[key]
         return None
