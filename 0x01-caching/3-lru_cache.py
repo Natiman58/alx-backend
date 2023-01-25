@@ -34,7 +34,6 @@ class LRUCache(BaseCaching):
             if key in self.keys_array:
                 del self.keys_array[self.keys_array.index(key)]
             self.keys_array.append(key)
-            print(self.keys_array)
             self.cache_data[key] = item
 
     def get(self, key):
