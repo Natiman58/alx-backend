@@ -14,7 +14,7 @@ class BasicCache(BaseCaching):
         """
             initialize this class using the parent class
         """
-        super().__init__()
+        BaseCaching.__init__()
 
     def put(self, key, item):
         """
