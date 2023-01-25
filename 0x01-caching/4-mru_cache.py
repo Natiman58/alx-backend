@@ -18,7 +18,6 @@ class MRUCache(BaseCaching):
         """Put an an item in to the cache using the given key"""
         if key is None or item is None:
             pass
-
         else:
             cache = self.cache_data
             cache_len = len(cache)
