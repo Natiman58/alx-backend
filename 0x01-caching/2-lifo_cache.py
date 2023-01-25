@@ -24,20 +24,21 @@ class LIFOCache(BaseCaching):
         """
         if key is None or item is None:
             pass
-        cache = self.cache_data
-        item_num = len(cache)
-        max_items = BaseCaching.MAX_ITEMS
-        if item_num >= max_items and key not in cache:
-            print(f"DISCARD: {self.keys_array[-1]}")
-            del cache[self.keys_array[-1]]
-            del self.keys_array[-1]
-        self.keys_array.append(key)
-        cache[key] = item
+        else:
+            cache = self.cache_data
+            item_num = len(cache)
+            max_items = BaseCaching.MAX_ITEMS
+            if item_num >= max_items and key not in cache:
+                print(f"DISCARD: {self.keys_array[-1]}")
+                del cache[self.keys_array[-1]]
+                del self.keys_array[-1]
+            self.keys_array.append(key)
+            cache[key] = item
 
     def get(self, key):
         """
             return the value of the item linked to the key
         """
-        if key is None or key not in self.cache_data:
+        if key is None and key not in self.cache_data:
             return None
         return self.cache_data[key]

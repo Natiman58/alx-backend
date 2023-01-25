@@ -23,18 +23,19 @@ class LRUCache(BaseCaching):
         """
         if key is None or item is None:
             pass
-        cache = self.cache_data
-        length = len(cache)
-        max_items = BaseCaching.MAX_ITEMS
-        if length >= max_items and key not in cache:
-            print(f"DISCARD: {self.keys_array[0]}", end="\n")
-            del cache[self.keys_array[0]]
-            del self.keys_array[0]
-        if key in self.keys_array:
-            del self.keys_array[self.keys_array.index(key)]
-        self.keys_array.append(key)
-        print(self.keys_array)
-        self.cache_data[key] = item
+        else:
+            cache = self.cache_data
+            length = len(cache)
+            max_items = BaseCaching.MAX_ITEMS
+            if length >= max_items and key not in cache:
+                print(f"DISCARD: {self.keys_array[0]}", end="\n")
+                del cache[self.keys_array[0]]
+                del self.keys_array[0]
+            if key in self.keys_array:
+                del self.keys_array[self.keys_array.index(key)]
+            self.keys_array.append(key)
+            print(self.keys_array)
+            self.cache_data[key] = item
 
     def get(self, key):
         """
