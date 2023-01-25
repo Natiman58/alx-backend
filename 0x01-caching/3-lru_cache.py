@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-    A module to implement LRU caching system
+    A module to implement LRU (Least recently used) caching system
 """
 
 
@@ -44,4 +44,3 @@ class LRUCache(BaseCaching):
         if key is not None and key in self.cache_data.keys():
             return self.cache_data[key]
         return None
-
