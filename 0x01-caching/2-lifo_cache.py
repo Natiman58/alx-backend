@@ -29,7 +29,7 @@ class LIFOCache(BaseCaching):
             item_num = len(cache)
             max_items = BaseCaching.MAX_ITEMS
             if item_num >= max_items and key not in cache:
-                print(f"DISCARD: {self.keys_array[-1]}")
+                print(f"DISCARD: {self.keys_array[-1]}", end='\n')
                 del cache[self.keys_array[-1]]
                 del self.keys_array[-1]
             if key in self.keys_array:
