@@ -7,6 +7,9 @@ the flask application
 from flask import Flask, render_template
 from flask_babel import Babel
 
+app = Flask(__name__)  # instantiate Flask object
+babel = Babel(app)  # instantiate Babel object
+
 
 class Config(object):
     """
@@ -17,12 +20,8 @@ class Config(object):
     BABEL_DEFAULT_TIMEZONE = "UTC"  # default timezone
 
 
-app = Flask(__name__)  # instantiate Flask object
-babel = Babel(app)  # instantiate Babel object
-
-
 @app.route('/', strict_slashes=False)
-def homepage():
+def homepage() -> str:
     """
     Homepage route
     """
