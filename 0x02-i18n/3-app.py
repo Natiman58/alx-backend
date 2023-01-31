@@ -19,7 +19,6 @@ class Config(object):
 
 # instantiate objs after configuration
 app = Flask(__name__)  # instantiate Flask object
-app.config.from_object(Config)
 babel = Babel(app)  # instantiate Babel object
 
 
