@@ -8,7 +8,7 @@ from flask import Flask, render_template, request
 from flask_babel import Babel
 
 
-class Config:
+class Config(object):
     """
     Flask configuration for available languages in our app
     """
@@ -28,9 +28,8 @@ def get_locale():
     Get the current locale
     """
     return request.accept_languages.best_match(app.config['LANGUAGES'])
-
-
-#babel.init_app(app, locale_selector=get_locale)  # add locale_selector
+# for newer versions of Babel use this instade of @bable.localeselector
+# babel.init_app(app, locale_selector=get_locale)  # add locale_selector
 
 
 @app.route('/', strict_slashes=False)
