@@ -7,9 +7,6 @@ the flask application
 from flask import Flask, render_template
 from flask_babel import Babel
 
-app = Flask(__name__)  # instantiate Flask object
-babel = Babel(app)  # instantiate Babel object
-
 
 class Config(object):
     """
@@ -18,6 +15,11 @@ class Config(object):
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = "en"  # default language
     BABEL_DEFAULT_TIMEZONE = "UTC"  # default timezone
+
+
+app = Flask(__name__)  # instantiate Flask object
+app.config.from_object(Config)
+babel = Babel(app)  # instantiate Babel object
 
 
 @app.route('/', strict_slashes=False)
