@@ -11,7 +11,7 @@ app = Flask(__name__)  # instantiate Flask object
 babel = Babel(app)  # instantiate Babel object
 
 
-class Config:
+class Config(object):
     """
     Flask configuration for available languages in our app
     """
