@@ -21,7 +21,7 @@ app.config.from_object(Config)
 babel = Babel(app)  # instantiate Babel object
 
 
-# @babel.localeselector
+@babel.localeselector
 def get_locale():
     """
     Get the current locale
@@ -38,7 +38,7 @@ def get_locale():
 
 
 # for newer versions of Babel use this instade of @bable.localeselector
-babel.init_app(app, locale_selector=get_locale)  # add locale_selector
+# babel.init_app(app, locale_selector=get_locale)  # add locale_selector
 
 
 @app.route('/', strict_slashes=False)
