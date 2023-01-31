@@ -1,18 +1,11 @@
 #!/usr/bin/env python3
 """
-    A simple script to parameterize flask templates
-"""
-#!/usr/bin/env python3
-"""
-This is a simple script to add flak-babel to
-the flask application
+This is a simple script to make flask recognize the default
+language configuration
 """
 
 from flask import Flask, render_template, request
 from flask_babel import Babel
-
-app = Flask(__name__)  # instantiate Flask object
-babel = Babel(app)  # instantiate Babel object
 
 
 class Config(object):
@@ -24,20 +17,29 @@ class Config(object):
     BABEL_DEFAULT_TIMEZONE = "UTC"  # default timezone
 
 
-@app.route('/', strict_slashes=False)
-def homepage():
-    """
-    Homepage route
-    """
-    return render_template('3-index.html')
+# instantiate objs after configuration
+app = Flask(__name__)  # instantiate Flask object
+app.config.from_object(Config)
+babel = Babel(app)  # instantiate Babel object
 
 
-@babel.localeselector
+# @babel.localeselector
 def get_locale():
     """
     Get the current locale
     """
     return request.accept_languages.best_match(app.config['LANGUAGES'])
+
+
+babel.init_app(app, locale_selector=get_locale)  # add locale_selector
+
+
+@app.route('/', strict_slashes=False)
+def index():
+    """
+    Homepage route
+    """
+    return render_template('3-index.html')
 
 
 if __name__ == '__main__':
