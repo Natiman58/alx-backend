@@ -52,8 +52,8 @@ def get_user():
     """
     Get the current user
     """
-    user_id = request.args.get('login_as', None)
-    if user_id is not None and int(user_id) in users.keys():
+    user_id = request.args.get('login_as')
+    if user_id:
         return users[int(user_id)]
     return None
 
@@ -64,7 +64,8 @@ def before_request():
     Before each request check if a user if any exist
     and add it to the global flask.g
     """
-    g.user = get_user()
+    user = get_user()
+    g.user = user
 
 
 @app.route('/', strict_slashes=False)
