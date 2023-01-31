@@ -15,6 +15,6 @@ class Config(object):
     """
     Flask configuration for available languages in our app
     """
-    LANGUAGES = ['en', 'fr']
-    BABEL_DEFAULT_LOCALE = 'en'  # default language
-    BABEL_DEFAULT_TIMEZONE = 'UTC'  # default timezone
+    LANGUAGES = ["en", "fr"]
+    BABEL_DEFAULT_LOCALE = "en"  # default language
+    BABEL_DEFAULT_TIMEZONE = "UTC"  # default timezone
