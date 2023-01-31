@@ -8,7 +8,6 @@ from flask import Flask
 from flask_babel import Babel
 
 app = Flask(__name__)  # instantiate Flask object
-app.config.from_object(app.Config)
 babel = Babel(app)  # instantiate Bable object
 
 
