@@ -1,17 +1,21 @@
 #!/usr/bin/env python3
 """
+    A simple script to parameterize flask templates
+"""
+#!/usr/bin/env python3
+"""
 This is a simple script to add flak-babel to
 the flask application
 """
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_babel import Babel
 
 app = Flask(__name__)  # instantiate Flask object
 babel = Babel(app)  # instantiate Babel object
 
 
-class Config:
+class Config(object):
     """
     Flask configuration for available languages in our app
     """
@@ -25,7 +29,15 @@ def homepage():
     """
     Homepage route
     """
-    return render_template('1-index.html')
+    return render_template('3-index.html')
+
+
+@babel.localeselector
+def get_locale():
+    """
+    Get the current locale
+    """
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 if __name__ == '__main__':
