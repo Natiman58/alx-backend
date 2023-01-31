@@ -21,7 +21,7 @@ class Config(object):
 
 
 @app.route('/', strict_slashes=False)
-def homepage() -> str:
+def homepage():
     """
     Homepage route
     """
