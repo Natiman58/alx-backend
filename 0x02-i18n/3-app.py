@@ -16,7 +16,7 @@ class Config(object):
     BABEL_DEFAULT_LOCALE = "en"  # default language
     BABEL_DEFAULT_TIMEZONE = "UTC"  # default timezone
 
-
+# instantiate objs after configuration
 app = Flask(__name__)  # instantiate Flask object
 app.config.from_object(Config)
 babel = Babel(app)  # instantiate Babel object
@@ -28,7 +28,7 @@ def get_locale():
     Get the current locale
     """
     return request.accept_languages.best_match(app.config['LANGUAGES'])
-# for newer versions of Babel use this instade of @bable.localeselector
+# for newer versions of Babel(2.11.0) use this instade of @bable.localeselector
 # babel.init_app(app, locale_selector=get_locale)  # add locale_selector
 
 
