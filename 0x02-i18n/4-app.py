@@ -17,11 +17,11 @@ class Config(object):
 
 # instantiate objs after configuration is complete
 app = Flask(__name__)  # instantiate Flask object
-app.config.from_object(Config)
+app.config.from_object(Config) # add the config to flask object(app)
 babel = Babel(app)  # instantiate Babel object
 
 
-@babel.localeselector
+#@babel.localeselector
 def get_locale():
     """
     Get the current locale
@@ -38,7 +38,7 @@ def get_locale():
 
 
 # for newer versions of Babel(2.11.0) use this instade of @bable.localeselector
-# babel.init_app(app, locale_selector=get_locale)  # add locale_selector
+babel.init_app(app, locale_selector=get_locale)  # add locale_selector
 
 
 @app.route('/', strict_slashes=False)

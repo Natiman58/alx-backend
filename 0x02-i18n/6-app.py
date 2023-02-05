@@ -27,17 +27,9 @@ users = {
     4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
 }
 
-def get_user():
-    """
-    Get the current user
-    """
-    user_id = request.args.get('login_as')
-    if user_id:
-        return users[int(user_id)]
-    return None
 
 
-@babel.localeselector
+# @babel.localeselector
 def get_locale():
     """
     Get the current locale
@@ -58,7 +50,17 @@ def get_locale():
 
 
 # for newer versions of Babel(2.11.0) use this instade of @bable.localeselector
-# babel.init_app(app, locale_selector=get_locale)  # add locale_selector
+babel.init_app(app, locale_selector=get_locale)  # add locale_selector
+
+
+def get_user():
+    """
+    Get the current user
+    """
+    user_id = request.args.get('login_as')
+    if user_id:
+        return users[int(user_id)]
+    return None
 
 
 @app.before_request
@@ -76,7 +78,7 @@ def index():
     """
     Homepage route
     """
-    return render_template('5-index.html')
+    return render_template('6-index.html')
 
 
 if __name__ == '__main__':
