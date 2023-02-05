@@ -3,11 +3,13 @@
     To force a particular locale using a user's request
 """
 
+from datetime import datetime
 from flask import Flask, render_template, request, g
 from flask_babel import Babel
-#from flask.ext.babelex import Babel
+# from flask.ext.babelex import Babel
 from pytz import timezone
 import pytz
+import locale
 
 
 class Config(object):
@@ -31,8 +33,7 @@ users = {
 }
 
 
-
-#@babel.localeselector
+# @babel.localeselector
 def get_locale():
     """
     Get the current locale
@@ -69,11 +70,23 @@ def get_user():
 @app.before_request
 def before_request():
     """
-    Before each request check if a user if any exist
+    Before each request check if any user exist
     and add it to the global flask.g
     """
     user = get_user()
     g.user = user
+
+    # current UTC time
+    current_UTC_time = pytz.utc.localize(datetime.utcnow())
+    # convert to specified time zone
+    time = current_UTC_time.astimezone(timezone(get_timezone()))
+    # set the local setting for the user
+    locale.setlocale(locale.LC_TIME, (get_locale(), 'UTF-8'))
+    # Time format
+    FORMAT = "%b %d, %Y %I:%M:%S %p"
+    # Add time to global flask
+    g.time = time.strftime(FORMAT)
+
 
 # @babel.timezoneselector
 def get_timezone() -> str:
@@ -81,11 +94,12 @@ def get_timezone() -> str:
         infer appropriate time zone
     """
     # get time zone from url
-    tz = request.get('timezone')
+    tz = request.args.get('timezone')
+    print(tz)
     if tz:
         try:
             # check if it's a valid time zone
-            return pytz.timezone(tz)
+            return timezone(tz).zone
         # catch the exception
         except pytz.exceptions.UnknownTimeZoneError:
             pass
@@ -93,19 +107,23 @@ def get_timezone() -> str:
     if g.user:
         try:
             tz = g.user.get('timezone')
-            return pytz.timezone(tz)
+            return timezone(tz).zone
         except pytz.exceptions.UnknownTimeZoneError:
             pass
     # else Default to UTC
     return app.config.get("BABEL_DEFAULT_TIMEZONE")
+
+
+# add timezone_selector to babble object
 babel.init_app(app, timezone_selector=get_timezone)
+
 
 @app.route('/', strict_slashes=False)
 def index():
     """
     Homepage route
     """
-    return render_template('7-index.html')
+    return render_template('index.html')
 
 
 if __name__ == '__main__':
