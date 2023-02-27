@@ -1,5 +1,4 @@
 const kue = require('kue');
-const redis = require('redis');
 
 // create a kue queue and set it's redis backend
 const queue = kue.createQueue();
