@@ -1,6 +1,6 @@
 import redis from 'redis';
 
-// import promisify
+// import promisify from utility
 const { promisify } = require('util')
 
 // create a Redis client
