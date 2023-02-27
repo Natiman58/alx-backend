@@ -29,5 +29,6 @@ function displaySchoolValue(schoolName) {
 
 
 displaySchoolValue('Holberton');
+
 setNewSchool('HolbertonSanFrancisco', '100');
 displaySchoolValue('HolbertonSanFrancisco');
