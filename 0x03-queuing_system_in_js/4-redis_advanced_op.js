@@ -2,13 +2,13 @@ import redis from 'redis';
 
 const client = redis.createClient();
 
+// create a hash table using the key "HolbertonSchools"
+client.hset("HolbertonSchools", "Portland", 50, "Seattle", 80, "New York", 20, "Bogota", 20, "Cali", 40, "Paris", 2, redis.print);
+
 // when client is connected to Redis
 client.on('connect', () => {
     console.log('Redis client connected to the server');
 });
-
-// create a hash table using the key "HolbertonSchools"
-client.hset("HolbertonSchools", "Portland", "50", "Seattle", "80", "New York", "20", "Bogota", "20", "Cali", "40", "Paris", "2", redis.print)
 
 // get all the filds value pairs with the key
 client.hgetall("HolbertonSchools", (error, value) => {

@@ -21,6 +21,7 @@ client.on('error', (err) => {
 
 // add new function
 function setNewSchool(schoolName, value) {
+    // set the value and print confirmation message with redis.print
     client.SET(schoolName, value, redis.print);
 }
 
